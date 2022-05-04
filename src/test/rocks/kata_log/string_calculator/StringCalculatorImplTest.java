@@ -3,7 +3,8 @@ package rocks.kata_log.string_calculator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class StringCalculatorImplTest {
 
@@ -80,6 +81,24 @@ class StringCalculatorImplTest {
         int actual = classUnderTest.Add(numbers);
 
         assertEquals(expected, actual);
+    }
+
+    // STEP 5
+
+    @Test
+    void givenNegative_whenAdd_thenThrowsIllegalArgumentExceptionWithNegative() {
+        String numbers = "1,-2,3";
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> classUnderTest.Add(numbers));
+        assertEquals(exception.getMessage(), "negatives not allowed : -2");
+    }
+
+    @Test
+    void givenNegatives_whenAdd_thenThrowsIllegalArgumentExceptionWithNegatives() {
+        String numbers = "1,-2,3,-4";
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> classUnderTest.Add(numbers));
+        assertEquals(exception.getMessage(), "negatives not allowed : -2, -4");
     }
 
 

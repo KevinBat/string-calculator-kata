@@ -1,6 +1,6 @@
 package rocks.kata_log.string_calculator;
 
-import java.util.Arrays;
+import java.util.StringJoiner;
 
 public class StringCalculatorImpl implements StringCalculator {
 
@@ -18,13 +18,22 @@ public class StringCalculatorImpl implements StringCalculator {
     }
 
     private int getSum(String numbers, char delimiter) {
-        int sum;
+        int sum = 0;
         String[] split = numbers.split("[\\n" + delimiter + "]", -1);
 
-        sum = Arrays.stream(split)
-                .mapToInt(Integer::parseInt)
-                .sum();
+        StringJoiner negativeValues = new StringJoiner(", ");
+        for (String s : split) {
+            int n = Integer.parseInt(s);
+            sum += n;
+            if (n < 0) negativeValues.add(s);
+        }
+
+        if (negativeValues.length() > 0) {
+            throw new IllegalArgumentException("negatives not allowed : " + negativeValues.toString());
+        }
+
         return sum;
     }
+
 
 }
