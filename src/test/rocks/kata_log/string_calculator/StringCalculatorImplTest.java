@@ -70,6 +70,19 @@ class StringCalculatorImplTest {
         assertEquals(expected, actual);
     }
 
+    // STEP 4
+
+    @Test
+    void givenNewDelimiterAnd1And2_whenAdd_thenReturn3() {
+        String numbers = "//;\n1;2";
+        int expected = 3;
+
+        int actual = classUnderTest.Add(numbers);
+
+        assertEquals(expected, actual);
+    }
+
+
     //ERROR CASE
 
     // STEP 1
