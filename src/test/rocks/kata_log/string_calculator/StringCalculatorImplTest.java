@@ -58,7 +58,21 @@ class StringCalculatorImplTest {
         assertEquals(expected, actual);
     }
 
+    //STEP 3
+
+    @Test
+    void given1And2And3WithNewLine_whenAdd_thenReturn6() {
+        String numbers = "1\n2,3";
+        int expected = 6;
+
+        int actual = classUnderTest.Add(numbers);
+
+        assertEquals(expected, actual);
+    }
+
     //ERROR CASE
+
+    // STEP 1
 
     @Test
     void givenToto_whenAdd_thenThrowsNumberFormatException() {
@@ -66,6 +80,8 @@ class StringCalculatorImplTest {
 
         assertThrows(NumberFormatException.class, () -> classUnderTest.Add(numbers));
     }
+
+    // STEP 3
 
     @Test
     void given1CommaAndNewLine_whenAdd_thenThrowsNumberFormatException() {

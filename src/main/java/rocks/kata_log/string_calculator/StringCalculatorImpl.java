@@ -8,7 +8,7 @@ public class StringCalculatorImpl implements StringCalculator {
     public int Add(String numbers) {
         int sum = 0;
         if (!numbers.isEmpty()) {
-            String[] split = numbers.split(",");
+            String[] split = numbers.split("[\\n,]", -1);
 
             sum = Arrays.stream(split)
                     .mapToInt(Integer::parseInt)
