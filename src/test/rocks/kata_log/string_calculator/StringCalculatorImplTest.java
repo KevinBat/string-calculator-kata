@@ -14,9 +14,11 @@ class StringCalculatorImplTest {
         classUnderTest = new StringCalculatorImpl();
     }
 
+    //STEP 1
+
     @Test
     void givenEmptyString_whenAdd_thenReturn0() {
-        String numbers = "0";
+        String numbers = "";
         int expected = 0;
 
         int actual = classUnderTest.Add(numbers);
@@ -44,9 +46,30 @@ class StringCalculatorImplTest {
         assertEquals(expected, actual);
     }
 
+    //STEP 2
+
     @Test
-    void given1And2And3_whenAdd_thenReturn3() {
+    void given1And2And3_whenAdd_thenReturn6() {
         String numbers = "1,2,3";
+        int expected = 6;
+
+        int actual = classUnderTest.Add(numbers);
+
+        assertEquals(expected, actual);
+    }
+
+    //ERROR CASE
+
+    @Test
+    void givenToto_whenAdd_thenThrowsNumberFormatException() {
+        String numbers = "toto";
+
+        assertThrows(NumberFormatException.class, () -> classUnderTest.Add(numbers));
+    }
+
+    @Test
+    void given1CommaAndNewLine_whenAdd_thenThrowsNumberFormatException() {
+        String numbers = "1,\n";
 
         assertThrows(NumberFormatException.class, () -> classUnderTest.Add(numbers));
     }
